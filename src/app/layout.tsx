@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import Footer from "@/components/Footer";
+import NextAuthContext from "@/context/NextAuthContext";
 
 const sans = Open_Sans({ subsets: ["latin"] });
 
@@ -22,9 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className="relative w-full flex flex-col md:flex-row md:h-full overflow-auto bg-neutral-50">
-        <Header />
-        <main className="">{children}</main>
-        <Footer />
+        <NextAuthContext>
+          <Header />
+          <main className="">{children}</main>
+          <Footer />
+        </NextAuthContext>
       </body>
     </html>
   );
