@@ -9,6 +9,7 @@ import NewIcon from "./ui/icons/NewIcon";
 import SearchFillIcon from "./ui/icons/SearchFillIcon";
 import SearchIcon from "./ui/icons/SearchIcon";
 import InstagramIcon from "./ui/icons/InstagramIcon";
+import ColorButton from "./ui/ColorButton";
 
 const menu = [
   {
@@ -39,12 +40,14 @@ export default function Header() {
   return (
     <header className=" bg-white border-r border-neutral-300 p-6 h-full hidden md:inline-block md:w-[100px] lg:w-[270px]">
       <Link href={"/"}>
-        <InstagramIcon className="lg:hidden" />
-        <h1 className="text-xl font-bold hidden lg:inline">Instagram</h1>
+        <div className="mb-16">
+          <InstagramIcon className="lg:hidden" />
+          <h1 className="text-xl font-bold hidden lg:inline">Instagram</h1>
+        </div>
       </Link>
-      <ul className="mt-16">
+      <ul className="flex flex-col gap-4">
         {menu.map((item) => (
-          <li className="my-8" key={item.href}>
+          <li key={item.href}>
             <Link href={item.href}>
               <div className="flex items-center">
                 {pathName === item.href ? item.clickedIcon : item.icon}
@@ -53,6 +56,7 @@ export default function Header() {
             </Link>
           </li>
         ))}
+        <ColorButton text="Sign in" onClick={() => {}} />
       </ul>
     </header>
   );
