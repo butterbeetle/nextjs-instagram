@@ -44,26 +44,29 @@ export default function Header() {
   const user = session?.user;
 
   let isSigninButton = session ? (
-    <li>
+    <li className="w-full rounded-md p-2 hover:bg-gray-100 flex justify-center md:inline-block">
       <SignButton type="Signout" onClick={() => signOut()} />
     </li>
   ) : (
-    <li>
+    <li className="w-full rounded-md p-2 hover:bg-gray-100 flex justify-center md:inline-block">
       <SignButton type="Signin" onClick={() => signIn()} />
     </li>
   );
 
   return (
-    <header className=" bg-white border-r border-neutral-300 p-6 h-full hidden md:inline-block md:w-[100px] lg:w-[270px]">
+    <header className=" bg-white border-r border-neutral-300 p-4  hidden md:inline-block md:w-[80px] lg:w-[250px]">
       <Link href={"/"}>
-        <div className="mb-16">
+        <div className="mb-12 w-full rounded-md p-2 hover:bg-gray-100 flex justify-center md:inline-block">
           <InstagramIcon className="lg:hidden" />
           <h1 className="text-xl font-bold hidden lg:inline">Instagram</h1>
         </div>
       </Link>
-      <ul className="flex flex-col gap-6">
+      <ul className="flex flex-col gap-2 ">
         {menu.map((item) => (
-          <li key={item.href}>
+          <li
+            className="w-full rounded-md p-2 hover:bg-gray-100 flex justify-center md:inline-block"
+            key={item.href}
+          >
             <Link href={item.href}>
               <div className="flex items-center">
                 {pathName === item.href ? item.clickedIcon : item.icon}
@@ -73,7 +76,7 @@ export default function Header() {
           </li>
         ))}
         {user && (
-          <li>
+          <li className="w-full rounded-md p-2 hover:bg-gray-100 flex justify-center md:inline-block">
             <Link href={`/user/${user.username}`}>
               <div className="flex items-center">
                 <Avatar image={user.image} />
