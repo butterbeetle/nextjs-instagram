@@ -1,4 +1,4 @@
 import { BsPlusSquare } from "react-icons/bs";
 export default function NewIcon() {
-  return <BsPlusSquare className="w-6 h-6" />;
+  return <BsPlusSquare className="w-7 h-7" />;
 }

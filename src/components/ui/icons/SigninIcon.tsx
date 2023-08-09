@@ -1,5 +1,5 @@
 import { VscSignIn } from "react-icons/vsc";
 
 export default function SigninIcon() {
-  return <VscSignIn className="w-6 h-6" />;
+  return <VscSignIn className="w-7 h-7" />;
 }

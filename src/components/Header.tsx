@@ -12,6 +12,7 @@ import InstagramIcon from "./ui/icons/InstagramIcon";
 import ColorButton from "./ui/ColorButton";
 import { signIn, signOut, useSession } from "next-auth/react";
 import SignButton from "./ui/SignButton";
+import Avatar from "./Avatar";
 
 const menu = [
   {
@@ -40,11 +41,16 @@ const menu = [
 export default function Header() {
   const pathName = usePathname();
   const { data: session } = useSession();
+  const user = session?.user;
 
   let isSigninButton = session ? (
-    <SignButton type="Signout" onClick={() => signOut()} />
+    <li>
+      <SignButton type="Signout" onClick={() => signOut()} />
+    </li>
   ) : (
-    <SignButton type="Signin" onClick={() => signIn()} />
+    <li>
+      <SignButton type="Signin" onClick={() => signIn()} />
+    </li>
   );
 
   return (
@@ -55,7 +61,7 @@ export default function Header() {
           <h1 className="text-xl font-bold hidden lg:inline">Instagram</h1>
         </div>
       </Link>
-      <ul className="flex flex-col gap-4">
+      <ul className="flex flex-col gap-6">
         {menu.map((item) => (
           <li key={item.href}>
             <Link href={item.href}>
@@ -66,6 +72,16 @@ export default function Header() {
             </Link>
           </li>
         ))}
+        {user && (
+          <li>
+            <Link href={`/user/${user.username}`}>
+              <div className="flex items-center">
+                <Avatar image={user.image} />
+                <p className="ml-4 hidden lg:inline">Profile</p>
+              </div>
+            </Link>
+          </li>
+        )}
         {isSigninButton}
       </ul>
     </header>
