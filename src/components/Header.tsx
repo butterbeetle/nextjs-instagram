@@ -11,27 +11,28 @@ import SearchIcon from "./ui/icons/SearchIcon";
 import InstagramIcon from "./ui/icons/InstagramIcon";
 import ColorButton from "./ui/ColorButton";
 import { signIn, signOut, useSession } from "next-auth/react";
+import SignButton from "./ui/SignButton";
 
 const menu = [
   {
     href: "/",
     icon: <HomeIcon />,
     clickedIcon: <HomeFillIcon />,
-    title: "홈",
+    title: "Home",
     label: "Home",
   },
   {
     href: "/search",
     icon: <SearchIcon />,
     clickedIcon: <SearchFillIcon />,
-    title: "검색",
+    title: "Search",
     label: "Search user",
   },
   {
     href: "/new",
     icon: <NewIcon />,
     clickedIcon: <NewFillIcon />,
-    title: "만들기",
+    title: "New",
     label: "New post",
   },
 ];
@@ -40,10 +41,10 @@ export default function Header() {
   const pathName = usePathname();
   const { data: session } = useSession();
 
-  let isSignButton = session ? (
-    <ColorButton text="Sign out" onClick={() => signOut()} />
+  let isSigninButton = session ? (
+    <SignButton type="Signout" onClick={() => signOut()} />
   ) : (
-    <ColorButton text="Sign in" onClick={() => signIn()} />
+    <SignButton type="Signin" onClick={() => signIn()} />
   );
 
   return (
@@ -65,7 +66,7 @@ export default function Header() {
             </Link>
           </li>
         ))}
-        {isSignButton}
+        {isSigninButton}
       </ul>
     </header>
   );
