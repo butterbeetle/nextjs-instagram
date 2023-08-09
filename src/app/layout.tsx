@@ -22,10 +22,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
-      <body className="relative w-full flex flex-col md:flex-row md:h-full overflow-auto bg-neutral-50">
+      <body className="relative w-full flex flex-col  md:flex-row md:h-full overflow-auto bg-neutral-50">
         <NextAuthContext>
           <Header />
-          <main className="">{children}</main>
+          <main className="basis-[100%]">{children}</main>
           <Footer />
         </NextAuthContext>
       </body>

@@ -9,7 +9,7 @@ export default function ColorButton({ text, onClick }: Props) {
     to-amber-300 p-[0.15rem] text-center"
     >
       <button
-        className="bg-white rounded-sm text-base sm:text-sm p-[0.3rem] hover:opacity-90 transition-opacity"
+        className="w-[150px] bg-white rounded-sm text-sm  p-[0.3rem] hover:opacity-90 transition-opacity"
         onClick={onClick}
       >
         {text}
