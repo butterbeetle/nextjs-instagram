@@ -56,10 +56,8 @@ export default function Header() {
   return (
     <header className=" bg-white border-r border-neutral-300 p-4  hidden md:inline-block md:w-[80px] lg:w-[250px]">
       <Link href={"/"}>
-        <div className="mb-12 w-full  ">
-          <div className="rounded-md p-2 hover:bg-gray-100 flex justify-center md:inline-block">
-            <InstagramIcon className="lg:hidden" />
-          </div>
+        <div className="mb-12 w-full rounded-md p-2 hover:bg-gray-100 flex justify-center md:inline-block">
+          <InstagramIcon className="lg:hidden" />
           <h1 className="text-xl font-bold hidden lg:inline">Instagram</h1>
         </div>
       </Link>
