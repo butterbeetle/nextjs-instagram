@@ -8,6 +8,9 @@ import NewFillIcon from "./ui/icons/NewFillIcon";
 import NewIcon from "./ui/icons/NewIcon";
 import SearchFillIcon from "./ui/icons/SearchFillIcon";
 import SearchIcon from "./ui/icons/SearchIcon";
+import { useSession } from "next-auth/react";
+import SignoutIcon from "./ui/icons/SignoutIcon";
+import SigninIcon from "./ui/icons/SigninIcon";
 
 const menu = [
   {
@@ -34,6 +37,7 @@ const menu = [
 ];
 export default function Footer() {
   const pathName = usePathname();
+  const { data: session } = useSession();
   return (
     <footer className="w-full sticky bottom-0 inline-block md:hidden bg-white border-t border-neutral-300">
       <ul className="py-4 px-16 flex justify-around">
@@ -42,6 +46,7 @@ export default function Footer() {
             <Link href={href}>{pathName === href ? clickedIcon : icon}</Link>
           </li>
         ))}
+        {session ? <SignoutIcon /> : <SigninIcon />}
       </ul>
     </footer>
   );
