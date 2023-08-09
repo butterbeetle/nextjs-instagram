@@ -1,3 +1,4 @@
+import { createUser } from "@/service/user";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import KakaoProvider from "next-auth/providers/kakao";
@@ -13,10 +14,18 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.KAKAO_CLIENT_SECRET || "",
     }),
   ],
-  app: {
-    signIn: "/api/auth/signin",
-  },
   callbacks: {
+    async signIn({ user: { id, name, email, image } }) {
+      if (!email) return false;
+      createUser({
+        id,
+        username: email?.split("@")[0],
+        name: name || "",
+        email: email,
+        image,
+      });
+      return true;
+    },
     async session({ session }) {
       const user = session?.user;
 
@@ -29,6 +38,9 @@ export const authOptions: NextAuthOptions = {
 
       return session;
     },
+  },
+  app: {
+    signIn: "/api/auth/signin",
   },
 };
 
