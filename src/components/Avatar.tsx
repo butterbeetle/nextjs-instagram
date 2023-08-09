@@ -6,7 +6,7 @@ export default function Avatar({ image }: Props) {
   const pathName = usePathname();
   const { data: session } = useSession();
   const username = session?.user.username;
-  console.log(pathName.split("/").at(-1));
+
   return (
     <div
       className={`w-7 h-7 flex rounded-full justify-center items-center border ${
