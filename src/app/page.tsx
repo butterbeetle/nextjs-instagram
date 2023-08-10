@@ -11,8 +11,8 @@ export default async function Home() {
   }
 
   return (
-    <section className="w-full flex  ">
-      <div className="mx-auto ">
+    <section className="w-full max-w-[850px] p-4 mx-auto">
+      <div className="w-full min-w-0">
         <FollowList />
         <PostList />
       </div>

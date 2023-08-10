@@ -5,14 +5,13 @@ import Link from "next/link";
 import { FadeLoader } from "react-spinners";
 import useSWR from "swr";
 import Avatar from "./Avatar";
+import ScrollBar from "./ui/ScrollBar";
 
 export default function FollowList() {
   const { data, error, isLoading } = useSWR<DetailUser>("/api/me");
   const myFollowing = data?.following;
 
-  const dummy = data?.following && [
-    ...data?.following,
-    ...data?.following,
+  const test = data?.following && [
     ...data?.following,
     ...data?.following,
     ...data?.following,
@@ -20,9 +19,15 @@ export default function FollowList() {
   ];
 
   return (
+    // <section
+    //   className="relative z-0  flex justify-center items-center p-4
+    // shadow-md shadow-neutral-400 mb-4 rounded-2xl min-h-[90px] overflow-x-auto "
+    // >
     <section
-      className="relative z-0  flex justify-center items-center p-4 
-    shadow-sm shadow-neutral-300 mb-4 rounded-lg min-h-[90px] overflow-x-auto "
+      className="relative z-0 w-full flex items-center justify-center p-4
+    shadow-md rounded-2xl min-h-[120px] overflow-hidden shadow-neutral-500 
+    select-none
+    "
     >
       {isLoading ? (
         <FadeLoader color="red" />
@@ -32,21 +37,20 @@ export default function FollowList() {
         )
       )}
       {myFollowing && myFollowing.length > 0 && (
-        <ul className="flex">
-          {dummy.map(({ username, image }) => (
-            <li key={username}>
-              <Link
-                className="flex flex-col items-center w-20"
-                href={`/user/${username}`}
-              >
-                <Avatar image={image} size="md" highlight />
-                <p className="w-full text-sm text-ellipsis overflow-hidden text-center">
-                  {username}
-                </p>
-              </Link>
-            </li>
+        <ScrollBar>
+          {test.map(({ username, image }) => (
+            <Link
+              key={username}
+              className="flex flex-col items-center w-20"
+              href={`/user/${username}`}
+            >
+              <Avatar image={image} size="md" highlight />
+              <p className="w-full text-sm text-ellipsis overflow-hidden text-center">
+                {username}
+              </p>
+            </Link>
           ))}
-        </ul>
+        </ScrollBar>
       )}
     </section>
   );
