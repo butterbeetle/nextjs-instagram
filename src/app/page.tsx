@@ -1,3 +1,5 @@
+import FollowList from "@/components/FollowList";
+import PostList from "@/components/PostList";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
@@ -8,5 +10,12 @@ export default async function Home() {
     redirect("/api/auth/signin");
   }
 
-  return <div className="text-gray-500">Instagram Page</div>;
+  return (
+    <section className="w-full flex flex-col mx-auto">
+      <div className="mx-auto">
+        <FollowList />
+        <PostList />
+      </div>
+    </section>
+  );
 }
