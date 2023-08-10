@@ -11,13 +11,6 @@ export default function FollowList() {
   const { data, error, isLoading } = useSWR<DetailUser>("/api/me");
   const myFollowing = data?.following;
 
-  const test = data?.following && [
-    ...data?.following,
-    ...data?.following,
-    ...data?.following,
-    ...data?.following,
-  ];
-
   return (
     // <section
     //   className="relative z-0  flex justify-center items-center p-4
@@ -26,7 +19,7 @@ export default function FollowList() {
     <section
       className="relative z-0 w-full flex items-center justify-center p-4
     shadow-md rounded-2xl min-h-[120px] overflow-hidden shadow-neutral-500 
-    select-none
+    select-none bg-white
     "
     >
       {isLoading ? (
@@ -38,7 +31,7 @@ export default function FollowList() {
       )}
       {myFollowing && myFollowing.length > 0 && (
         <ScrollBar>
-          {test.map(({ username, image }) => (
+          {myFollowing.map(({ username, image }) => (
             <Link
               key={username}
               className="flex flex-col items-center w-20"

@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={sans.className}>
-      <body className="relative w-full flex flex-col md:flex-row md:h-full overflow-auto bg-neutral-100">
+      <body className="relative w-full flex flex-col md:flex-row md:h-full overflow-auto bg-neutral-50">
         <NextAuthContext>
           <Header />
           <main className="w-full h-full overflow-hidden">
