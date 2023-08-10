@@ -18,7 +18,7 @@ export default function FollowList() {
     // >
     <section
       className="relative z-0 w-full flex items-center justify-center p-4
-    shadow-md rounded-2xl min-h-[120px] overflow-hidden shadow-neutral-500 
+    shadow-sm rounded-2xl min-h-[120px] overflow-hidden shadow-neutral-300 
     select-none bg-white
     "
     >
