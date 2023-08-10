@@ -36,8 +36,8 @@ export default {
       validation: (Rule) => Rule.unique(),
     },
     {
-      title: 'Followwers',
-      name: 'followwers',
+      title: 'Followers',
+      name: 'followers',
       type: 'array',
       of: [
         {
