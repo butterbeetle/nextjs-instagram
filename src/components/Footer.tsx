@@ -9,8 +9,6 @@ import NewIcon from "./ui/icons/NewIcon";
 import SearchFillIcon from "./ui/icons/SearchFillIcon";
 import SearchIcon from "./ui/icons/SearchIcon";
 import { signIn, signOut, useSession } from "next-auth/react";
-import SignoutIcon from "./ui/icons/SignoutIcon";
-import SigninIcon from "./ui/icons/SigninIcon";
 import SignButton from "./ui/SignButton";
 import Avatar from "./Avatar";
 
@@ -19,24 +17,25 @@ const menu = [
     href: "/",
     icon: <HomeIcon />,
     clickedIcon: <HomeFillIcon />,
-    title: "홈",
+    title: "Home",
     label: "Home",
   },
   {
     href: "/search",
     icon: <SearchIcon />,
     clickedIcon: <SearchFillIcon />,
-    title: "검색",
+    title: "Search",
     label: "Search user",
   },
   {
     href: "/new",
     icon: <NewIcon />,
     clickedIcon: <NewFillIcon />,
-    title: "만들기",
+    title: "New",
     label: "New post",
   },
 ];
+
 export default function Footer() {
   const pathName = usePathname();
   const { data: session } = useSession();

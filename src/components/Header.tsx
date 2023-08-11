@@ -9,7 +9,6 @@ import NewIcon from "./ui/icons/NewIcon";
 import SearchFillIcon from "./ui/icons/SearchFillIcon";
 import SearchIcon from "./ui/icons/SearchIcon";
 import InstagramIcon from "./ui/icons/InstagramIcon";
-import ColorButton from "./ui/ColorButton";
 import { signIn, signOut, useSession } from "next-auth/react";
 import SignButton from "./ui/SignButton";
 import Avatar from "./Avatar";
