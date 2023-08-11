@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className="relative w-full flex flex-col md:flex-row md:h-full overflow-auto bg-neutral-50">
         <NextAuthContext>
           <Header />
-          <main className="w-full h-full overflow-hidden">
+          <main className="w-full h-full overflow-x-hidden">
             <SWRConfigContext>{children}</SWRConfigContext>
           </main>
           <Footer />

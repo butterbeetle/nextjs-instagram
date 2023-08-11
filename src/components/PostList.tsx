@@ -1,14 +1,29 @@
 "use client";
 import { SimplePost } from "@/model/post";
 import Image from "next/image";
+import { CircleLoader } from "react-spinners";
 import useSWR from "swr";
+import PostListCard from "./PostListCard";
 
 export default function PostList() {
   const { data: posts, isLoading, error } = useSWR<SimplePost[]>("/api/posts");
   console.log(posts);
   return (
     <section>
-      <ul>{posts && posts.map(({ id, text }) => <li key={id}>{text}</li>)}</ul>
+      {isLoading && (
+        <div>
+          <CircleLoader color="red" />
+        </div>
+      )}
+      {posts && (
+        <ul>
+          {posts.map((post) => (
+            <li key={post.id}>
+              <PostListCard post={post} />
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }
