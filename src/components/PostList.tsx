@@ -18,7 +18,7 @@ export default function PostList() {
       {posts && (
         <ul>
           {posts.map((post) => (
-            <li key={post.id}>
+            <li className="mb-4" key={post.id}>
               <PostListCard post={post} />
             </li>
           ))}
