@@ -12,6 +12,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import SignoutIcon from "./ui/icons/SignoutIcon";
 import SigninIcon from "./ui/icons/SigninIcon";
 import SignButton from "./ui/SignButton";
+import Avatar from "./Avatar";
 
 const menu = [
   {
@@ -39,6 +40,7 @@ const menu = [
 export default function Footer() {
   const pathName = usePathname();
   const { data: session } = useSession();
+  const user = session?.user;
 
   let isSigninButton = session ? (
     <SignButton type="Signout" onClick={() => signOut()} />
@@ -47,12 +49,23 @@ export default function Footer() {
   );
   return (
     <footer className="w-full sticky bottom-0 inline-block md:hidden bg-white border-t border-neutral-300">
-      <ul className="py-4 px-16 flex justify-around">
+      <ul className="py-4 px-16 flex justify-around items-center">
         {menu.map(({ href, icon, clickedIcon }) => (
           <li key={href}>
             <Link href={href}>{pathName === href ? clickedIcon : icon}</Link>
           </li>
         ))}
+
+        {user && (
+          <li className="rounded-md p-2 flex justify-center ">
+            <Link href={`/user/${user.username}`}>
+              <div className="flex items-center">
+                <Avatar image={user.image} />
+                <p className="ml-4 hidden lg:inline">Profile</p>
+              </div>
+            </Link>
+          </li>
+        )}
         {isSigninButton}
       </ul>
     </footer>
