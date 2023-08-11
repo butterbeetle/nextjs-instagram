@@ -31,6 +31,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </NextAuthContext>
+        <div id="portal" />
       </body>
     </html>
   );
