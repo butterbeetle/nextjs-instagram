@@ -2,13 +2,13 @@
 
 import { DetailUser } from "@/model/user";
 import Link from "next/link";
-import { FadeLoader } from "react-spinners";
+import { SyncLoader } from "react-spinners";
 import useSWR from "swr";
 import Avatar from "./Avatar";
 import ScrollBar from "./ui/ScrollBar";
 
 export default function FollowList() {
-  const { data, error, isLoading } = useSWR<DetailUser>("/api/me");
+  const { data, isLoading } = useSWR<DetailUser>("/api/me");
   const myFollowing = data?.following;
 
   return (
@@ -23,7 +23,7 @@ export default function FollowList() {
     "
     >
       {isLoading ? (
-        <FadeLoader color="red" />
+        <SyncLoader color="red" />
       ) : (
         (!myFollowing || myFollowing.length === 0) && (
           <p>{`You don't have following`}</p>

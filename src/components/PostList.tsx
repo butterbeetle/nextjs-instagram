@@ -1,7 +1,6 @@
 "use client";
 import { SimplePost } from "@/model/post";
-import Image from "next/image";
-import { CircleLoader } from "react-spinners";
+import { PuffLoader } from "react-spinners";
 import useSWR from "swr";
 import PostListCard from "./PostListCard";
 
@@ -11,8 +10,8 @@ export default function PostList() {
   return (
     <section>
       {isLoading && (
-        <div>
-          <CircleLoader color="red" />
+        <div className="mt-32 flex justify-center">
+          <PuffLoader color="red" />
         </div>
       )}
       {posts && (
