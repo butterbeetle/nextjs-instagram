@@ -1,8 +1,8 @@
 "use client";
 import { SimplePost } from "@/model/post";
-import { PuffLoader } from "react-spinners";
 import useSWR from "swr";
 import PostListCard from "./PostListCard";
+import PuffSpinner from "./ui/PuffSpinner";
 
 export default function PostList() {
   const { data: posts, isLoading, error } = useSWR<SimplePost[]>("/api/posts");
@@ -11,7 +11,7 @@ export default function PostList() {
     <section>
       {isLoading && (
         <div className="mt-32 flex justify-center">
-          <PuffLoader color="red" />
+          <PuffSpinner />
         </div>
       )}
       {posts && (
