@@ -1,3 +1,8 @@
-export default function UserProfile() {
+import { ProfileUser } from "@/model/user";
+
+type Props = {
+  user: ProfileUser;
+};
+export default function UserProfile({ user }: Props) {
   return <p>UserProfile</p>;
 }

@@ -1,24 +1,25 @@
 import UserPost from "@/components/UserPost";
 import UserProfile from "@/components/UserProfile";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
+import { getUserForProfileBy } from "@/service/user";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: {
     username: string;
   };
 };
-export default async function UserPage({ params: { username } }: Props) {
-  const session = await getServerSession();
 
-  if (!session) {
-    redirect("/");
+export default async function UserPage({ params: { username } }: Props) {
+  const user = await getUserForProfileBy(username);
+
+  if (!user.name) {
+    notFound();
   }
 
   return (
     <section className="w-full">
-      <UserProfile />
-      <UserPost />
+      <UserProfile user={user} />
+      <UserPost user={user} />
     </section>
   );
 }

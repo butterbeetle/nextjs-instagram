@@ -1,4 +1,5 @@
 "use client";
+
 import { FullPost, SimplePost } from "@/model/post";
 import Image from "next/image";
 import useSWR from "swr";
