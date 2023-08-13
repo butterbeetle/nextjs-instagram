@@ -1,4 +1,4 @@
-type AvatarSize = "sm" | "md";
+type AvatarSize = "sm" | "md" | "lg" | "xl";
 
 type Props = {
   image?: string | null;
@@ -58,8 +58,18 @@ const getSizeStyleBy = (size: AvatarSize): ImageSizeStyle => {
       };
     case "md":
       return {
-        container: "w-14 h-14",
-        image: "w-[52px] h-[52px] p-[0.1rem]",
+        container: "w-11 h-11",
+        image: "w-[42px] h-[42px] p-[0.1rem]",
+      };
+    case "lg":
+      return {
+        container: "w-[68px] h-[68px]",
+        image: "w-16 h-16 p-[0.2rem]",
+      };
+    case "xl":
+      return {
+        container: "w-[142px] h-[142px]",
+        image: "w-[138px] h-[138px] p-[0.3rem]",
       };
     default:
       throw new Error(`Unsupported type size: ${size}`);

@@ -1,6 +1,7 @@
 import { SearchUser } from "@/model/user";
 import Avatar from "./Avatar";
 import Link from "next/link";
+import FollowButton from "./ui/FollowButton";
 
 type Props = {
   user: SearchUser;
@@ -18,9 +19,7 @@ export default function UserCard({
             <p className="text-gray-500 text-sm">{name}</p>
             <p className="text-gray-500 text-xs">{`${following} following ${followers} followers`}</p>
           </div>
-          <button className="border py-1 px-4 rounded-lg bg-sky-500 text-white text-sm ">
-            follow
-          </button>
+          <FollowButton />
         </div>
       </div>
     </Link>
