@@ -1,3 +1,4 @@
+"use client";
 import { FullPost, SimplePost } from "@/model/post";
 import Image from "next/image";
 import useSWR from "swr";
@@ -29,12 +30,13 @@ export default function PostDetail({ post }: Props) {
       <div className="w-full md:basis-2/5 flex flex-col">
         <PostUserAvatar image={userImage} username={username} />
         <Image
-          className="border-y md:hidden md:border-none"
+          className="border-y md:hidden md:border-none h-auto w-full"
           src={image}
           alt={`photo by ${username}`}
           priority
-          width={400}
-          height={600}
+          sizes="100vw"
+          width={0}
+          height={0}
         />
         <ul className="border-t border-gray-200 h-full overflow-y-auto p-4 mb-1 hidden md:inline-block">
           {comments &&

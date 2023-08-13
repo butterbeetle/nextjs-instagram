@@ -1,3 +1,5 @@
+import UserPost from "@/components/UserPost";
+import UserProfile from "@/components/UserProfile";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
@@ -13,5 +15,10 @@ export default async function UserPage({ params: { username } }: Props) {
     redirect("/");
   }
 
-  return <p>{username}</p>;
+  return (
+    <section className="w-full">
+      <UserProfile />
+      <UserPost />
+    </section>
+  );
 }
