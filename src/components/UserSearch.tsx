@@ -1,20 +1,20 @@
 "use client";
+
 import { SearchUser } from "@/model/user";
 import useSWR from "swr";
-import Avatar from "./Avatar";
 import { FormEvent, useState } from "react";
-import Link from "next/link";
-import SearchIcon from "./ui/icons/SearchIcon";
 import PuffSpinner from "./ui/PuffSpinner";
 import UserCard from "./UserCard";
+import useDebounce from "@/hooks/debounce";
 
 export default function UserSearch() {
   const [keyword, setKeyword] = useState("");
+  const debouncedKeywrod = useDebounce(keyword);
   const {
     data: users,
     isLoading,
     error,
-  } = useSWR<SearchUser[]>(`/api/search/${keyword}`);
+  } = useSWR<SearchUser[]>(`/api/search/${debouncedKeywrod}`);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
