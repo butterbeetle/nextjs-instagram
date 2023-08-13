@@ -1,7 +1,7 @@
 import { ProfileUser } from "@/model/user";
-import ArrowLeftIcon from "./ui/icons/ArrowLeftIcon";
 import Avatar from "./Avatar";
 import FollowButton from "./ui/FollowButton";
+import BackButton from "./ui/BackButton";
 
 type Props = {
   user: ProfileUser;
@@ -23,15 +23,11 @@ export default function UserProfile({
       data: following,
     },
   ];
-  const avatarSizes = {
-    md: "md",
-  };
+
   return (
     <section className="w-full">
       <header className="relative border-b border-neutral-200 text-center py-2 md:hidden">
-        <div className="absolute left-4 cursor-pointer" title="돌아가기">
-          <ArrowLeftIcon />
-        </div>
+        <BackButton />
         <p className="font-bold">{username}</p>
       </header>
       <div className="w-full flex flex-col md:flex-row items-center justify-center pt-6">
