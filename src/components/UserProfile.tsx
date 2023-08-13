@@ -57,7 +57,9 @@ export default function UserProfile({
                 key={title}
               >
                 {title}
-                <span className="font-bold md:ml-1">{data}</span>
+                <span className="font-bold text-sm md:text-base md:ml-1">
+                  {data}
+                </span>
               </li>
             ))}
           </ul>
