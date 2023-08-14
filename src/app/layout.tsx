@@ -11,9 +11,9 @@ const sans = Open_Sans({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: {
     default: "Instagram Clone Coding",
-    template: "Instagram | %s",
+    template: "Instagram Clone Coding | %s",
   },
-  description: "Instagram Home",
+  description: "Instagram Clone Coding HomePage, Not a real website",
 };
 
 export default function RootLayout({
