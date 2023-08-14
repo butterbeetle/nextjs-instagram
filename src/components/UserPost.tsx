@@ -18,12 +18,18 @@ export default function UserPost({ user: { username } }: Props) {
   const [selected, setSelected] = useState(tabs[0].type);
 
   return (
-    <section>
-      <ul>
+    <section className="max-w-4xl mx-auto md:border-t md:mt-12">
+      <ul className="flex justify-center uppercase ">
         {tabs.map(({ type, icon }) => (
-          <li key={type} onClick={() => setSelected(type)}>
-            <button>{icon}</button>
-            <span>{type}</span>
+          <li
+            className={`flex justify-center mt-[-1px] basis-1/3 cursor-pointer py-2 border-black ${
+              type === selected && "font-bold border-t"
+            } md:items-center`}
+            key={type}
+            onClick={() => setSelected(type)}
+          >
+            <button className="scale-60 md:scale-75">{icon}</button>
+            <span className="hidden md:inline">{type}</span>
           </li>
         ))}
       </ul>

@@ -14,9 +14,9 @@ export default function PostGrid({ username, selected }: Props) {
   } = useSWR<SimplePost[]>(`/api/user/${username}/${selected}`);
 
   return (
-    <div>
+    <div className="w-full text-center">
       {isLoading && <PuffSpinner />}
-      <ul>
+      <ul className="grid grid-cols-3 gap-4 py-4 px-8">
         {posts &&
           posts.map((post, index) => (
             <li key={post.id}>

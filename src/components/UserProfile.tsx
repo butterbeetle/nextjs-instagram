@@ -37,7 +37,7 @@ export default function UserProfile({
         <div className="hidden md:inline">
           <Avatar image={image} size="xl" highlight />
         </div>
-        <div className="w-full md:w-auto my-2 md:ml-6">
+        <div className="w-full border-b md:w-auto md:ml-6 md:border-none">
           <div className="flex flex-col md:flex-row items-center ">
             <p className="mb-2 md:mr-6">{username}</p>
             <FollowButton />
@@ -45,7 +45,7 @@ export default function UserProfile({
           <p className="my-2 font-bold mb-4 text-sm text-center block md:hidden">
             {name}
           </p>
-          <ul className="w-full border-y md:border-none flex  justify-center gap-4">
+          <ul className="w-full border-t md:border-none flex  justify-center">
             {info.map(({ title, data }) => (
               <li
                 className="flex flex-col md:flex-row justify-center items-center basis-1/3 md:mr-2 rounded-md py-2 hover:bg-neutral-100
