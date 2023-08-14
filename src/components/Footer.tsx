@@ -48,7 +48,7 @@ export default function Footer() {
   );
   return (
     <footer className="w-full sticky bottom-0 inline-block md:hidden bg-white border-t border-neutral-300">
-      <ul className="py-4 px-16 flex justify-around items-center">
+      <ul className="py-1 px-4 flex justify-around items-center">
         {menu.map(({ href, icon, clickedIcon }) => (
           <li key={href}>
             <Link href={href}>{pathName === href ? clickedIcon : icon}</Link>

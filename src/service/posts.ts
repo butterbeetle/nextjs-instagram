@@ -46,3 +46,81 @@ export async function getPost(id: string) {
       image: urlFor(post.image),
     }));
 }
+
+export async function getPostsOf(username: string) {
+  return client
+    .fetch(
+      `*[_type == "post" && author->username == "${username}"]
+    | order(_createdAt desc){
+      ...,
+      "username": author->username,
+      "userImage": author->image,
+      "image": photo,
+      "likes": likes[]->username,
+      "text": comments[0].comment,
+      "comments": count(comments),
+      "id":_id,
+      "createdAt":_createdAt
+
+    }
+    `
+    )
+    .then((posts) =>
+      posts.map((post: SimplePost) => ({
+        ...post,
+        image: urlFor(post.image),
+      }))
+    );
+}
+
+export async function getLikedPotsOf(username: string) {
+  return client
+    .fetch(
+      `*[_type == "post" && "${username}" in likes[]->username]
+    | order(_createdAt desc){
+      ...,
+      "username": author->username,
+      "userImage": author->image,
+      "image": photo,
+      "likes": likes[]->username,
+      "text": comments[0].comment,
+      "comments": count(comments),
+      "id":_id,
+      "createdAt":_createdAt
+
+    }
+    `
+    )
+    .then((posts) =>
+      posts.map((post: SimplePost) => ({
+        ...post,
+        image: urlFor(post.image),
+      }))
+    );
+}
+
+export async function getSavedPostsOf(username: string) {
+  return client
+    .fetch(
+      `*[_type == "post" && _id in *[_type == "user" && username == "${username}"].bookmarks[]._ref]
+    | order(_createdAt desc){
+      ...,
+      "username": author->username,
+      "userImage": author->image,
+      "image": photo,
+      "likes": likes[]->username,
+      "text": comments[0].comment,
+      "comments": count(comments),
+      "id":_id,
+      "createdAt":_createdAt
+
+    }
+    `
+    )
+    .then((posts) =>
+      posts.map((post: SimplePost) => ({
+        ...post,
+        image: urlFor(post.image),
+      }))
+    );
+}
