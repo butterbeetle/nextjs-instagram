@@ -42,7 +42,7 @@ export default function UserProfile({
             <p className="mb-2 md:mr-6">{username}</p>
             <FollowButton />
           </div>
-          <p className="my-2 font-bold text-sm text-center block md:hidden">
+          <p className="my-2 font-bold mb-4 text-sm text-center block md:hidden">
             {name}
           </p>
           <ul className="w-full border-y md:border-none flex  justify-center gap-4">
