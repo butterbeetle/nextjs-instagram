@@ -22,6 +22,7 @@ export async function getFollowingPostsOf(username: string) {
     .then((posts) =>
       posts.map((post: SimplePost) => ({
         ...post,
+        likes: post.likes ?? [],
         image: urlFor(post.image),
       }))
     );
@@ -43,6 +44,7 @@ export async function getPost(id: string) {
     )
     .then((post) => ({
       ...post,
+      likes: post.likes ?? [],
       image: urlFor(post.image),
     }));
 }
@@ -68,6 +70,7 @@ export async function getPostsOf(username: string) {
     .then((posts) =>
       posts.map((post: SimplePost) => ({
         ...post,
+        likes: post.likes ?? [],
         image: urlFor(post.image),
       }))
     );
@@ -94,6 +97,7 @@ export async function getLikedPotsOf(username: string) {
     .then((posts) =>
       posts.map((post: SimplePost) => ({
         ...post,
+        likes: post.likes ?? [],
         image: urlFor(post.image),
       }))
     );
@@ -120,6 +124,7 @@ export async function getSavedPostsOf(username: string) {
     .then((posts) =>
       posts.map((post: SimplePost) => ({
         ...post,
+        likes: post.likes ?? [],
         image: urlFor(post.image),
       }))
     );
