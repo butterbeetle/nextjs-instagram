@@ -1,20 +1,23 @@
 "use client";
 
-import { SearchUser } from "@/model/user";
+import { ProfileUser } from "@/model/user";
 import useSWR from "swr";
 import { FormEvent, useState } from "react";
 import PuffSpinner from "./ui/PuffSpinner";
 import UserCard from "./UserCard";
 import useDebounce from "@/hooks/debounce";
+import { useSession } from "next-auth/react";
 
 export default function UserSearch() {
   const [keyword, setKeyword] = useState("");
+  const { data: session } = useSession();
+  const user = session?.user;
   const debouncedKeywrod = useDebounce(keyword);
-  const {
-    data: users,
-    isLoading,
-    error,
-  } = useSWR<SearchUser[]>(`/api/search/${debouncedKeywrod}`);
+  const { data, isLoading, error } = useSWR<ProfileUser[]>(
+    `/api/search/${debouncedKeywrod}`
+  );
+
+  const users = data?.filter((d) => d.username !== user?.username);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
