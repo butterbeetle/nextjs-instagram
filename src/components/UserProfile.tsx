@@ -6,9 +6,8 @@ import BackButton from "./ui/BackButton";
 type Props = {
   user: ProfileUser;
 };
-export default function UserProfile({
-  user: { name, username, image, posts, followers, following },
-}: Props) {
+export default function UserProfile({ user }: Props) {
+  const { name, username, image, posts, followers, following } = user;
   const info = [
     {
       title: "posts",
@@ -40,7 +39,7 @@ export default function UserProfile({
         <div className="w-full border-b md:w-auto md:ml-6 md:border-none">
           <div className="flex flex-col md:flex-row items-center ">
             <p className="mb-2 md:mr-6">{username}</p>
-            <FollowButton />
+            <FollowButton user={user} />
           </div>
           <p className="my-2 font-bold mb-4 text-sm text-center block md:hidden">
             {name}
