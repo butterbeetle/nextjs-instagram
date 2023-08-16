@@ -1,4 +1,4 @@
-import { MdGridOn } from "react-icons/md";
+import { BsGrid3X3Gap } from "react-icons/bs";
 export default function PostIcon() {
-  return <MdGridOn className="w-7 h-7" />;
+  return <BsGrid3X3Gap className="w-7 h-7" />;
 }
