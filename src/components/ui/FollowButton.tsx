@@ -1,4 +1,5 @@
 "use client";
+
 import { ProfileUser } from "@/model/user";
 import Button from "./Button";
 import useMe from "@/hooks/me";
@@ -33,10 +34,11 @@ export default function FollowButton({ user }: Props) {
       router.refresh();
     });
   };
+
   return (
-    <div className="relative">
+    <>
       {showButton && (
-        <div>
+        <div className="relative">
           {isUpdating && (
             <div className="absolute z-20 inset-0 flex justify-center items-center">
               <PulseLoader size={6} />
@@ -50,6 +52,6 @@ export default function FollowButton({ user }: Props) {
           />
         </div>
       )}
-    </div>
+    </>
   );
 }

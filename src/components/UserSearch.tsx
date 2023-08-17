@@ -10,13 +10,13 @@ import { useSession } from "next-auth/react";
 
 export default function UserSearch() {
   const [keyword, setKeyword] = useState("");
-  const { data: session } = useSession();
-  const user = session?.user;
   const debouncedKeywrod = useDebounce(keyword);
   const { data, isLoading, error } = useSWR<ProfileUser[]>(
     `/api/search/${debouncedKeywrod}`
   );
 
+  const { data: session } = useSession();
+  const user = session?.user;
   const users = data?.filter((d) => d.username !== user?.username);
 
   const onSubmit = (e: FormEvent) => {

@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import useSWR from "swr";
 
 async function updateBookmark(postId: string, bookmark: boolean) {
-  return fetch("/api/bookmark", {
+  return fetch("/api/bookmarks", {
     method: "PUT",
     body: JSON.stringify({ id: postId, bookmark }),
   }).then((res) => res.json());
@@ -22,7 +22,7 @@ export default function useMe() {
   const setBookmark = useCallback(
     (postId: string, bookmark: boolean) => {
       if (!user) return;
-      const bookmarks = user?.bookmarks;
+      const bookmarks = user.bookmarks;
       const newUser = {
         ...user,
         bookmarks: bookmark
@@ -37,7 +37,7 @@ export default function useMe() {
         rollbackOnError: true,
       });
     },
-    [mutate, user]
+    [user, mutate]
   );
 
   const toggleFollow = useCallback(

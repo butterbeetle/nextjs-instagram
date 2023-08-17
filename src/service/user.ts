@@ -29,11 +29,16 @@ export async function getUserByUsername(username: string) {
     `*[_type == "user" && username == "${username}"][0]{
       ...,
       "id":_id,
-      following[]->{username,image},
-      followers[]->{username,image},
-      "bookmarks": bookmarks[]->_id
-    }
-    `
+      following[]->{
+        username,
+        image
+      },
+      followers[]->{
+        username,
+        image
+      },
+      "bookmarks":bookmarks[]->_id
+    }`
   );
 }
 
@@ -64,20 +69,23 @@ export async function getUserForProfileBy(username: string) {
   return client
     .fetch(
       `*[_type == "user" && username == "${username}"][0]{
-    ...,
-    "id":_id,
-    "following": count(following),
-    "followers": count(followers),
-    "posts":count(*[_type == "post" && author->username == "${username}"])
-  }
-  `
+      ...,
+      "id":_id,
+      "following": count(following),
+      "followers": count(followers),
+      "posts":count(*[_type == "post" && author->username == "${username}"])
+    }
+    `
     )
-    .then((user) => ({
-      ...user,
-      following: user?.following ?? 0,
-      followers: user?.followers ?? 0,
-      posts: user?.posts ?? 0,
-    }));
+    .then((user) => {
+      console.log(user);
+      return {
+        ...user,
+        following: user.following ?? 0,
+        followers: user.followers ?? 0,
+        posts: user.posts ?? 0,
+      };
+    });
 }
 
 export async function addBookmarkPost(postId: string, userId: string) {
