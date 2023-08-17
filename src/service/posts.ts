@@ -15,9 +15,7 @@ export async function getFollowingPostsOf(username: string) {
       "text": comments[0].comment,
       "comments": count(comments),
       "id":_id,
-      "createdAt":_createdAt
-    }
-    `
+      "createdAt":_createdAt}`
     )
     .then((posts) =>
       posts.map((post: SimplePost) => ({
@@ -39,8 +37,7 @@ export async function getPost(id: string) {
       "likes": likes[]->username,
       comments[]{comment, "username": author->username, "image": author->image},
       "id":_id,
-      "createdAt":_createdAt
-    }`
+      "createdAt":_createdAt}`
     )
     .then((post) => ({
       ...post,
@@ -62,10 +59,7 @@ export async function getPostsOf(username: string) {
       "text": comments[0].comment,
       "comments": count(comments),
       "id":_id,
-      "createdAt":_createdAt
-
-    }
-    `
+      "createdAt":_createdAt}`
     )
     .then((posts) =>
       posts.map((post: SimplePost) => ({
@@ -89,10 +83,7 @@ export async function getLikedPotsOf(username: string) {
       "text": comments[0].comment,
       "comments": count(comments),
       "id":_id,
-      "createdAt":_createdAt
-
-    }
-    `
+      "createdAt":_createdAt}`
     )
     .then((posts) =>
       posts.map((post: SimplePost) => ({
@@ -103,7 +94,7 @@ export async function getLikedPotsOf(username: string) {
     );
 }
 
-export async function getSavedPostsOf(username: string) {
+export async function getBookmarkPostsOf(username: string) {
   return client
     .fetch(
       `*[_type == "post" && _id in *[_type == "user" && username == "${username}"].bookmarks[]._ref]
@@ -117,9 +108,7 @@ export async function getSavedPostsOf(username: string) {
       "comments": count(comments),
       "id":_id,
       "createdAt":_createdAt
-
-    }
-    `
+    }`
     )
     .then((posts) =>
       posts.map((post: SimplePost) => ({

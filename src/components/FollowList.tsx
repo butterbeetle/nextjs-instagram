@@ -1,21 +1,16 @@
 "use client";
 
-import { DetailUser } from "@/model/user";
 import Link from "next/link";
 import { SyncLoader } from "react-spinners";
-import useSWR from "swr";
 import Avatar from "./Avatar";
 import ScrollBar from "./ui/ScrollBar";
+import useMe from "@/hooks/me";
 
 export default function FollowList() {
-  const { data, isLoading } = useSWR<DetailUser>("/api/me");
-  const myFollowing = data?.following;
+  const { user, isLoading } = useMe();
+  const myFollowing = user?.following;
 
   return (
-    // <section
-    //   className="relative z-0  flex justify-center items-center p-4
-    // shadow-md shadow-neutral-400 mb-4 rounded-2xl min-h-[90px] overflow-x-auto "
-    // >
     <section
       className="relative z-0 w-full flex items-center justify-center p-4
     shadow-sm rounded-2xl min-h-[120px] overflow-hidden shadow-neutral-300 

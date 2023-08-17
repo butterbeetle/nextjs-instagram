@@ -13,6 +13,8 @@ export default function PostGrid({ username, selected }: Props) {
     error,
   } = useSWR<SimplePost[]>(`/api/user/${username}/${selected}`);
 
+  console.log(posts);
+
   return (
     <div className="w-full text-center">
       {isLoading && (
