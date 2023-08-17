@@ -63,7 +63,7 @@ export default function ActionBar({ post, children, onComment }: Props) {
           {parseDate(createdAt)}
         </p>
       </div>
-      <div className="hidden md:inline-block">
+      <div className="w-full hidden md:inline-block">
         <CommentForm onPostComment={handleComment} />
       </div>
     </>
