@@ -60,7 +60,7 @@ export async function searchUsers(keyword?: string) {
       users.map((user: SearchUser) => ({
         ...user,
         following: user.following ?? 0,
-        followers: user.following ?? 0,
+        followers: user.followers ?? 0,
       }))
     );
 }
@@ -78,12 +78,11 @@ export async function getUserForProfileBy(username: string) {
     `
     )
     .then((user) => {
-      console.log(user);
       return {
         ...user,
-        following: user.following ?? 0,
-        followers: user.followers ?? 0,
-        posts: user.posts ?? 0,
+        following: user?.following ?? 0,
+        followers: user?.followers ?? 0,
+        posts: user?.posts ?? 0,
       };
     });
 }
