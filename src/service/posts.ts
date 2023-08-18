@@ -4,9 +4,9 @@ import { assetsURL, client, urlFor } from "./sanity";
 export async function getFollowingPostsOf(username: string) {
   return client
     .fetch(
-      `*[_type == "post" && username == "${username}" 
-    || author._ref in *[_type == "user" && username == "${username}"].following[]._ref]
-    | order(_createdAt desc){
+      `*[_type =="post" && author->username == "${username}"
+      || author._ref in *[_type == "user" && username == "${username}"].following[]._ref]
+      | order(_createdAt desc){
       ...,
       "username": author->username,
       "userImage": author->image,
@@ -17,13 +17,13 @@ export async function getFollowingPostsOf(username: string) {
       "id":_id,
       "createdAt":_createdAt}`
     )
-    .then((posts) =>
-      posts.map((post: SimplePost) => ({
+    .then((posts) => {
+      return posts.map((post: SimplePost) => ({
         ...post,
         likes: post.likes ?? [],
         image: urlFor(post.image),
-      }))
-    );
+      }));
+    });
 }
 
 export async function getPost(id: string) {
@@ -39,11 +39,13 @@ export async function getPost(id: string) {
       "id":_id,
       "createdAt":_createdAt}`
     )
-    .then((post) => ({
-      ...post,
-      likes: post.likes ?? [],
-      image: urlFor(post.image),
-    }));
+    .then((post) => {
+      return {
+        ...post,
+        likes: post.likes ?? [],
+        image: urlFor(post.image),
+      };
+    });
 }
 
 export async function getPostsOf(username: string) {
@@ -61,13 +63,13 @@ export async function getPostsOf(username: string) {
       "id":_id,
       "createdAt":_createdAt}`
     )
-    .then((posts) =>
-      posts.map((post: SimplePost) => ({
+    .then((posts) => {
+      return posts.map((post: SimplePost) => ({
         ...post,
         likes: post.likes ?? [],
         image: urlFor(post.image),
-      }))
-    );
+      }));
+    });
 }
 
 export async function getLikedPotsOf(username: string) {
