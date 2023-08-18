@@ -9,18 +9,18 @@ import Image from "next/image";
 type Props = {
   user: AuthUser;
 };
-export default function NewPost({ user }: Props) {
-  const { username, image } = user;
+export default function NewPost({ user: { username, image } }: Props) {
   const [dragging, setDragging] = useState<boolean>(false);
   const [file, setFile] = useState<File>();
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const files = e.target?.files;
     if (files && files[0]) {
       setFile(files[0]);
-      console.log(files[0]);
     }
   };
+
   const handleDrag = (e: React.DragEvent) => {
     if (e.type === "dragenter") {
       setDragging(true);
@@ -28,20 +28,22 @@ export default function NewPost({ user }: Props) {
       setDragging(false);
     }
   };
+
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
   };
+
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setDragging(false);
     const files = e.dataTransfer?.files;
     if (files && files[0]) {
       setFile(files[0]);
-      console.log(files[0]);
     }
   };
+
   return (
-    <section className="w-full max-w-xl flex flex-col items-center mt-6">
+    <section className="w-full max-w-xl flex flex-col items-center mt-6 mx-auto">
       <PostUserAvatar username={username} image={image ?? ""} />
       <form className="w-full flex flex-col mt-2">
         <input
