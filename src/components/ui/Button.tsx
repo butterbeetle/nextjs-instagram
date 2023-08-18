@@ -1,13 +1,13 @@
 type Props = {
   text: string;
   onClick: () => void;
-  gray: boolean;
+  gray?: boolean;
   disabled?: boolean;
 };
 export default function Button({
   text,
   onClick,
-  gray,
+  gray = false,
   disabled = false,
 }: Props) {
   return (
