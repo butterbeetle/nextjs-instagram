@@ -1,17 +1,9 @@
-import useSWR from "swr";
 import PuffSpinner from "./ui/PuffSpinner";
-import { SimplePost } from "@/model/post";
 import PostGridCard from "./PostGridCard";
-type Props = {
-  username: string;
-  selected: string;
-};
-export default function PostGrid({ username, selected }: Props) {
-  const {
-    data: posts,
-    isLoading,
-    error,
-  } = useSWR<SimplePost[]>(`/api/user/${username}/${selected}`);
+import usePosts from "@/hooks/posts";
+
+export default function PostGrid() {
+  const { posts, isLoading } = usePosts();
 
   return (
     <div className="w-full text-center">

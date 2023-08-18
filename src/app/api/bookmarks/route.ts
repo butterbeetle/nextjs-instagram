@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/route";
-import { addBookmarkPost, delBookmarkPost } from "@/service/user";
+import { addBookmark, removeBookmark } from "@/service/user";
 
 export async function PUT(req: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -13,13 +13,13 @@ export async function PUT(req: NextRequest) {
 
   const { id, bookmark } = await req.json();
 
-  if (!id || bookmark === undefined) {
+  if (!id || bookmark == null) {
     return new Response("Bad Request", { status: 400 });
   }
 
-  const request = bookmark ? addBookmarkPost : delBookmarkPost;
+  const request = bookmark ? addBookmark : removeBookmark;
 
-  return request(id, user.id)
+  return request(user.id, id) //
     .then((res) => NextResponse.json(res))
     .catch((error) => new Response(JSON.stringify(error), { status: 500 }));
 }

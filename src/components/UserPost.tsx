@@ -8,13 +8,18 @@ import PostGrid from "./PostGrid";
 import HeartFillIcon from "./ui/icons/HeartFillIcon";
 import BookmarkFillIcon from "./ui/icons/BookmarkFillIcon";
 import PostFillIcon from "./ui/icons/PostFillIcon";
+import { CacheKeyContext } from "@/context/CacheKeyContext";
 
 type Props = {
   user: ProfileUser;
 };
 const tabs = [
   { type: "posts", offIcon: <PostIcon />, onIcon: <PostFillIcon /> },
-  { type: "saved", offIcon: <BookmarkIcon />, onIcon: <BookmarkFillIcon /> },
+  {
+    type: "bookmarks",
+    offIcon: <BookmarkIcon />,
+    onIcon: <BookmarkFillIcon />,
+  },
   { type: "liked", offIcon: <HeartIcon />, onIcon: <HeartFillIcon /> },
 ];
 export default function UserPost({ user: { username } }: Props) {
@@ -38,7 +43,11 @@ export default function UserPost({ user: { username } }: Props) {
           </li>
         ))}
       </ul>
-      <PostGrid username={username} selected={selected} />
+      <CacheKeyContext.Provider
+        value={{ postsKey: `/api/user/${username}/${selected}` }}
+      >
+        <PostGrid />
+      </CacheKeyContext.Provider>
     </section>
   );
 }

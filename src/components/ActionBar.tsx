@@ -38,6 +38,7 @@ export default function ActionBar({ post, children, onComment }: Props) {
         image: user.image,
       });
   };
+
   return (
     <>
       <div className="flex justify-between my-2 px-4">

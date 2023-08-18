@@ -20,7 +20,7 @@ export async function GET(_: NextRequest, context: Context) {
   const [username, selected] = slug;
 
   let request = getPostsOf;
-  if (selected === "saved") {
+  if (selected === "bookmarks") {
     request = getBookmarkPostsOf;
   } else if (selected === "liked") {
     request = getLikedPotsOf;

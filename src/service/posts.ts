@@ -85,13 +85,13 @@ export async function getLikedPotsOf(username: string) {
       "id":_id,
       "createdAt":_createdAt}`
     )
-    .then((posts) =>
-      posts.map((post: SimplePost) => ({
+    .then((posts) => {
+      return posts.map((post: SimplePost) => ({
         ...post,
         likes: post.likes ?? [],
         image: urlFor(post.image),
-      }))
-    );
+      }));
+    });
 }
 
 export async function getBookmarkPostsOf(username: string) {
@@ -107,16 +107,15 @@ export async function getBookmarkPostsOf(username: string) {
       "text": comments[0].comment,
       "comments": count(comments),
       "id":_id,
-      "createdAt":_createdAt
-    }`
+      "createdAt":_createdAt}`
     )
-    .then((posts) =>
-      posts.map((post: SimplePost) => ({
+    .then((posts) => {
+      return posts.map((post: SimplePost) => ({
         ...post,
         likes: post.likes ?? [],
         image: urlFor(post.image),
-      }))
-    );
+      }));
+    });
 }
 
 export async function likePost(postId: string, userId: string) {

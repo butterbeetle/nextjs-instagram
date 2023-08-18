@@ -5,7 +5,7 @@ import PuffSpinner from "./ui/PuffSpinner";
 import usePosts from "@/hooks/posts";
 
 export default function PostList() {
-  const { posts, isLoading, error } = usePosts();
+  const { posts, isLoading } = usePosts();
 
   return (
     <section>
